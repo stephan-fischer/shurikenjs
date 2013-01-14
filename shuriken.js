@@ -257,7 +257,7 @@ Object.defineProperty(Object.prototype, 'extend',{
      }
 });
 
-Node.prototype.css = function (name) 
+Node.prototype.css = function (name, value) 
 {
    
     if (typeof name == 'object') {
@@ -267,7 +267,12 @@ Node.prototype.css = function (name)
         }.bind(this));
 
         return false;
+    }   else if (typeof value == 'string') {
+        
+        this.style[name] = value; 
+        return false;
     }
+    
     
     // J/S Pro Techniques p136
     if (this.style[name]) {
