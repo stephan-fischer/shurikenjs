@@ -127,7 +127,7 @@ Object.defineProperty(Object.prototype, 'on',{
         {     
             this.addEventListener(el, callback, false);
         }.bind(this));
-        
+
      }
 });
 
@@ -265,32 +265,31 @@ Node.prototype.css = function (name, value)
         Object.keys(name).forEach(function(key) {
             this.style[key] = name[key];
         }.bind(this));
-
-        return false;
+        
     }   else if (typeof value == 'string') {
-        
         this.style[name] = value; 
-        return false;
-    }
-    
-    
-    // J/S Pro Techniques p136
-    if (this.style[name]) {
-        
-        return this.style[name];
-    } else if (this.currentStyle) {
-        
-        return this.currentStyle[name];
-    } else if (document.defaultView && document.defaultView.getComputedStyle) {
-        
-        name = name.replace(/([A-Z])/g, "-$1");
-        name = name.toLowerCase();
-        
-        s = document.defaultView.getComputedStyle(this, "");
-        return s && s.getPropertyValue(name);
         
     } else {
-        return null;
+
+        // J/S Pro Techniques p136
+        if (this.style[name]) {
+            
+            return this.style[name];
+        } else if (this.currentStyle) {
+            
+            return this.currentStyle[name];
+        } else if (document.defaultView && document.defaultView.getComputedStyle) {
+            
+            name = name.replace(/([A-Z])/g, "-$1");
+            name = name.toLowerCase();
+            
+            s = document.defaultView.getComputedStyle(this, "");
+            return s && s.getPropertyValue(name);
+            
+        } else {
+            return null;
+        }
+    
     }
 };
 
@@ -355,14 +354,14 @@ Function.prototype.chain = function()
 
 var shuriken = {
     enableChaining : function()
-    {
+    {   
         this.chain      (Node.prototype);
         this.objectChain(Object.prototype);
     },
     objectChain : function(obj) 
     {
         var names = Object.getOwnPropertyNames(obj);
-        
+                
         for (var i = 0; i < names.length; i++) {
             var prop = names[i];
            
