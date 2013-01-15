@@ -99,20 +99,20 @@ Node.prototype.text = function(text)
 
 Node.prototype.hide = function()
 {
-    this.hidden = true;
+    this.style.display = 'none';
 };
 
-Node.prototype.toggle = function()
+Node.prototype.show = function(type)
 {
-    this.hidden = !this.hidden;
+    this.style.display = (type || 'block');
 };
 
-
-Node.prototype.show = function()
+Node.prototype.toggle = function(type)
 {
-    this.hidden = false;
+    if (  this.css('display') == 'none')
+          this.show(type);
+    else  this.hide();
 };
-
 
 Object.defineProperty(Object.prototype, 'on',{
     writable  : true,
@@ -215,26 +215,26 @@ Node.prototype.data = function (name, value)
     if (typeof name == 'object') {
         
         Object.keys(name).forEach(function(key) {
-            this.dataset[key] = name[key];
+            this.setAttribute('data-' + key , name[key]);
         }.bind(this));
 
         return false;
         
     } else if (typeof value == 'string') {
-        this.dataset[name] = value; 
+        this.setAttribute('data-' + name, value); 
     } else {
-       return this.dataset[name];
+       return this.getAttribute('data-' + name);
     }
 };
 
 Node.prototype.hasData = function (name)
 {
-    return this.dataset.hasOwnProperty(name);  
+    return this.getAttributeNode('data-' + name);  
 };
 
 Node.prototype.removeData = function (name) 
 {
-    delete this.dataset[name];    
+    this.removeAttribute('data-' + name);
 };
 
 Node.prototype.clone = function()
@@ -292,20 +292,6 @@ Node.prototype.css = function (name, value)
     } else {
         return null;
     }
-};
-
-Node.prototype.ajax = function(callback) 
-{
-    var formData = new FormData(this);
-    var xhr      = new XMLHttpRequest();
-
-    xhr.open(this.method, this.action, true);
-    xhr.onload = function(e) 
-    {
-        callback(this);
-    };
-    
-    xhr.send(formData);
 };
 
 Node.prototype.next = function() 
