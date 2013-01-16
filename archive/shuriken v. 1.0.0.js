@@ -4,7 +4,7 @@
  * MIT License - You are free to use this commercial projects as long as the copyright header is left intact.
  * @author        Stephan Fischer
  * @copyright     (c) 2012 - 2013 Stephan Fischer (www.shurikenjs.com)
- * @version 1.0.1
+ * @version 1.0.0
  * http://shurikenjs.com/license
  */
 
@@ -93,13 +93,8 @@ Node.prototype.html = function(html)
 Node.prototype.text = function(text)
 {
     if (!text) 
-        return (this.textContent || this.innerText);
-    else {
-        if ( this.textContent) 
-             this.textContent = text;
-        else this.innerText   = text;
-    }       
- 
+        return this.innerText
+    else       this.innerText = text;  
 };
 
 Node.prototype.hide = function()
