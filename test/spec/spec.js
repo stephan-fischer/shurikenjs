@@ -33,6 +33,11 @@ describe("shuriken", function() {
 				expect(div.innerHTML).toEqual("Hello world!");
 			});
 
+			it("can make simple text", function() {
+				var html = document.create("foo bar");
+				expect(html).toEqual(jasmine.any(Text));
+			});
+
 		});
 
 	});
