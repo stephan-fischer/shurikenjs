@@ -5,6 +5,7 @@ describe("shuriken", function() {
 	describe("document", function() {
 
 		describe("create", function() {
+
 			it("can make simple, empty elements", function() {
 				var div = document.create("<div>");
 				var span = document.create("<span></span>");
@@ -13,6 +14,7 @@ describe("shuriken", function() {
 				expect(span).toEqual(jasmine.any(HTMLSpanElement));
 				expect(a).toEqual(jasmine.any(HTMLAnchorElement));
 			});
+
 			it("can make elements with attributes", function() {
 				var div = document.create('<div id="foo">');
 				var span = document.create('<span class="bar"></span>');
@@ -24,6 +26,7 @@ describe("shuriken", function() {
 				expect(a).toEqual(jasmine.any(HTMLAnchorElement));
 				expect(a.href).toEqual("http://example.com/");
 			});
+
 		});
 
 	});
