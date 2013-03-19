@@ -27,6 +27,12 @@ describe("shuriken", function() {
 				expect(a.href).toEqual("http://example.com/");
 			});
 
+			it("can make elements with inner HTML", function() {
+				var div = document.create("<div>Hello world!</div>");
+				expect(div).toEqual(jasmine.any(HTMLDivElement));
+				expect(div.innerHTML).toEqual("Hello world!");
+			});
+
 		});
 
 	});
