@@ -41,5 +41,54 @@ describe("shuriken", function() {
 		});
 
 	});
+	
+    describe("node", function() {
 
+        describe("text", function() {
+
+            it("can set text to an element", function() {
+                var div = document.createElement("div");
+                div.text('example text')
+                expect(div.textContent).toEqual('example text');
+
+            });
+
+            it("can clear the text from an element", function() {
+                var div = document.createElement("div");
+                div.textContent = 'hello world';
+                div.text('');
+                expect(div.textContent).toEqual('');
+
+            });
+
+            it("can read the text from an element", function() {
+                var div = document.createElement("div");
+                div.textContent = 'hello world';
+                var text = div.text();
+                expect(text).toEqual('hello world');
+
+            });
+              
+        });
+
+        describe("html", function() {
+
+            it("can set html to an element", function() {
+                var div = document.createElement("div");
+                div.html('<strong>test</strong>')
+                expect(div.innerHTML).toEqual('<strong>test</strong>');
+
+            });
+
+            it("can clear the text from an element", function() {
+                var div = document.createElement("div");
+                div.innerHTML = '<strong>hello world</strong>';
+                div.html('');
+                expect(div.innerHTML).toEqual('');
+
+            });
+
+        });
+        
+    });
 });
