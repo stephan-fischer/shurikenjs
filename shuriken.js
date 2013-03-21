@@ -86,14 +86,14 @@ Node.prototype.empty = function()
 
 Node.prototype.html = function(html)
 {
-    if (!html) 
+    if (html == undefined) 
         return this.innerHTML
     else       this.innerHTML = html;  
 };
 
 Node.prototype.text = function(text)
 {
-    if (!text) 
+    if (text == undefined) 
         return (this.textContent || this.innerText);
     else {
         if ( this.textContent) 
