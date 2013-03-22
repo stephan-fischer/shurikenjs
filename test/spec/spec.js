@@ -89,6 +89,87 @@ describe("shuriken", function() {
             });
 
         });
+
+        describe("addClass", function() {
+
+            it("can add a class to a DIV", function() {
+                var div = document.createElement("div");
+                div.addClass('test');
+                expect(div.className).toEqual('test');
+
+            });
+            
+            it("can add multiple classes to a DIV with a class", function() {
+                var div = document.createElement("div");
+                div.className = 'one second';
+                div.addClass('third fourth fifth');
+                expect(div.className).toContain("one");
+                expect(div.className).toContain("second");  
+                expect(div.className).toContain("third"); 
+                expect(div.className).toContain("fourth"); 
+                expect(div.className).toContain("fifth"); 
+            });
+
+            it("can add an empty classname to a DIV an expecting an error", function() {
+                var div = document.createElement("div");
+                div.className = 'one second';
+                expect(function(){div.addClass('');}).toThrow();
+            });
+            
+        });
         
+        describe("removeClass", function() {
+
+            it("can remove one class from a DIV", function() {
+                var div = document.createElement("div");
+                div.className = 'i have many classes';
+                div.removeClass('many');
+                expect(div.className).toEqual('i have classes');
+
+            });
+
+            it("can remove multiple classes from a DIV", function() {
+                var div = document.createElement("div");
+                div.className = 'i have many classes';
+                div.removeClass('many i classes');
+                expect(div.className).toEqual('have');
+
+            });
+        });
+        
+        describe("hasClass", function() {
+
+            it("can check an existing class from an element", function() {
+                var div = document.createElement("div");
+                div.className = 'what a wonderful test';
+         
+                expect(div.hasClass('wonderful')).toBeTruthy();
+
+            });
+            
+            it("can check multiple existing classes from an element", function() {
+                var div = document.createElement("div");
+                div.className = 'what a wonderful test';
+         
+                expect(div.hasClass('wonderful a')).toBeTruthy();
+
+            });
+            it("can check if one class not existing in the classes of an element", function() {
+                var div = document.createElement("div");
+                div.className = 'what a wonderful test';
+         
+                expect(div.hasClass('horrible')).toBeFalsy();
+
+            });
+            
+            it("can check if one class of multiple classes is not in the classList of a DIV", function() {
+                var div = document.createElement("div");
+                div.className = 'what a wonderful test';
+         
+                expect(div.hasClass('wonderful wrong')).toBeFalsy();
+
+            });
+            
+        });
     });
 });

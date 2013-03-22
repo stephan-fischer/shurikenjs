@@ -33,15 +33,28 @@ if (!Function.prototype.bind)
   };
 }
 
-Node.prototype.hasClass = function(cls)
+Node.prototype.hasClass = function(classes)
 {
-    return this.classList.contains(cls);
+    var token    = String.fromCharCode(32);
+    var clsList  = classes.split(token);
+    var result   = true;
+    
+    clsList.forEach(function(el)
+    {     
+        if (!this.classList.contains(el)) {
+            result = false;
+            return false;
+        }
+
+    }.bind(this));
+    
+    return result;  
 };
 
 Node.prototype.addClass = function(classes) 
 {
-    var  token    = String.fromCharCode(32);
-    var  clsList  = classes.split(token);
+    var token    = String.fromCharCode(32);
+    var clsList  = classes.split(token);
     
     clsList.forEach(function(el)
     {         
@@ -51,14 +64,13 @@ Node.prototype.addClass = function(classes)
 
 Node.prototype.removeClass = function(classes) 
 {
-    var  token    = String.fromCharCode(32);
-    var  clsList  = classes.split(token);
+    var token    = String.fromCharCode(32);
+    var clsList  = classes.split(token);
     
     clsList.forEach(function(el)
     {     
         this.classList.remove(el);
     }.bind(this));
-
 };
 
 Node.prototype.toggleClass = function(classes) 
@@ -70,7 +82,6 @@ Node.prototype.toggleClass = function(classes)
     {     
         this.classList.toggle(el);
     }.bind(this));
-
 };
 
 Node.prototype.remove = function()
