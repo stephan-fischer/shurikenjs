@@ -105,12 +105,9 @@ Node.prototype.html = function(html)
 Node.prototype.text = function(text)
 {
     if (text == undefined) 
-        return (this.textContent || this.innerText);
-    else {
-        if ( this.textContent) 
-             this.textContent = text;
-        else this.innerText   = text;
-    }
+        return this.textContent;
+    else       this.textContent = text;
+    
 };
 
 Node.prototype.hide = function()

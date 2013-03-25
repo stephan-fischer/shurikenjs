@@ -53,6 +53,14 @@ describe("shuriken", function() {
 
             });
 
+            it("can read text and ignore html tags", function() {
+                var div = document.createElement("div");
+                div.html('example <strong>text</strong>');
+                var output = div.text();
+                expect(output).toEqual('example text');
+
+            });
+            
             it("can clear the text from an element", function() {
                 var div = document.createElement("div");
                 div.textContent = 'hello world';
@@ -171,5 +179,61 @@ describe("shuriken", function() {
             });
             
         });
+        
+
+
+        describe("on", function() {
+
+            it("can bind events to Nodes", function() {
+                var div       = document.createElement("div");
+                var result    = "";
+                var docResult = "";
+                
+                div.on('click', function() {
+                    result =  'success';
+                })
+                
+                document.on('custom', function() {
+                    docResult = "document";
+                });
+                
+                div.appendTo(document.body);
+                div.click();
+                
+                document.trigger('custom');
+                
+                expect(result).toEqual('success');
+                expect(docResult).toEqual('document');
+            });
+              
+        });
+
+        describe("of", function() {
+
+            it("can unbind an event", function() {
+                var result  = false; 
+                
+                var setTrue = function() {
+                    result =  true;
+                }
+                
+                window.on('click', setTrue)
+                window.trigger('click');
+                
+                expect(result).toBeTruthy();
+                
+                result = false;
+                
+                window.off('click', setTrue);
+                window.trigger('click');
+                
+                expect(result).toBeFalsy();
+  
+            });
+              
+        });
+   
+
+        
     });
 });
