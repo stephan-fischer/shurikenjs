@@ -40,6 +40,25 @@ describe("shuriken", function() {
 
 		});
 
+        describe("id", function() {
+
+            it("can select div via id", function() {
+                var div  = document.create("<div>");
+                div.attr('id', 'selectViaID');
+                div.appendTo(document.body);
+                
+                var findDiv = document.id('selectViaID');
+                
+                expect(findDiv).toEqual(jasmine.any(HTMLDivElement));
+                expect(findDiv.attr('id')).toEqual('selectViaID');
+
+
+            });
+
+
+        });
+
+
 	});
 	
     describe("node", function() {
@@ -208,7 +227,7 @@ describe("shuriken", function() {
               
         });
 
-        describe("of", function() {
+        describe("off", function() {
 
             it("can unbind an event", function() {
                 var result  = false; 
@@ -233,7 +252,6 @@ describe("shuriken", function() {
               
         });
    
-
         
     });
 });

@@ -391,6 +391,11 @@ Document.prototype.create = function(html)
     }
 };
 
+Document.prototype.id = function(name)
+{
+    return document.getElementById(name);
+}; 
+
 Function.prototype.chain = function() 
 {
     var that = this;
