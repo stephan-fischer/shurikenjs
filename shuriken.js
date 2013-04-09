@@ -273,24 +273,22 @@ Node.prototype.attr = function (name, value)
     if (typeof name == 'object') {
         
         Object.keys(name).forEach(function(key) {
-            var attr       = document.createAttribute(key);
-            attr.nodeValue = name[key];
-            this.setAttributeNode(attr);
-
+            this.setAttribute(key , name[key]);
         }.bind(this));
 
         return false;
         
     } else if (typeof value == 'string') {
-        
-        var attr       = document.createAttribute(name);
-        attr.nodeValue = value;
-        this.setAttributeNode(attr);
-        
+        this.setAttribute( name, value); 
     } else {
-        return this.getAttribute(name);
+       return this.getAttribute(name);
     }
 
+};
+
+Node.prototype.hasAttr = function (name)
+{
+    return this.getAttributeNode(name);  
 };
 
 Node.prototype.removeAttr = function (name) 

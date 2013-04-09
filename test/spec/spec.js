@@ -252,6 +252,47 @@ describe("shuriken", function() {
               
         });
    
+        describe("hasAttr", function() {
+
+            it("can check attributes", function() {
+                var div  = document.createElement("div");
+                div.attr('title', '');
+                
+                
+                expect(div.hasAttr('title')).toBeTruthy();
+                expect(div.hasAttr('notgiven')).toBeFalsy();
+  
+            });
+              
+        });
+
+        describe("attr", function() {
+
+            it("can set and read an attribute", function() {
+                var div  = document.createElement("div");
+                div.attr('title', 'check me');
+                var given = div.attr('title');
+                
+                expect(given).toEqual('check me');
+  
+            });
+
+
+            it("can set and read multiple attributes", function() {
+                var div  = document.createElement("div");
+                div.attr({
+                    'title': 'test',
+                    'data-test' : 'jasmine',
+                    'class'  : 'blue'
+                });
+
+                
+                expect(div.attr('title'))    .toEqual('test');
+                expect(div.attr('data-test')).toEqual('jasmine');
+                expect(div.attr('class'))    .toEqual('blue');
+            });
+               
+        });
         
     });
 });
