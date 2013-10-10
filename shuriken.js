@@ -260,7 +260,7 @@ Node.prototype.data = function (name, value)
 
 Node.prototype.hasData = function (name)
 {
-    return this.getAttributeNode('data-' + name);  
+    return this.getAttribute('data-' + name)  != null; 
 };
 
 Node.prototype.removeData = function (name) 
@@ -288,13 +288,12 @@ Node.prototype.attr = function (name, value)
 
 Node.prototype.hasAttr = function (name)
 {
-    return this.getAttributeNode(name);  
+    return this.getAttribute(name) != null;  
 };
 
 Node.prototype.removeAttr = function (name) 
 {
-    var node = this.getAttributeNode(name);
-    this.removeAttributeNode(node);
+    this.removeAttribute(name);
 };
 
 Node.prototype.clone = function()

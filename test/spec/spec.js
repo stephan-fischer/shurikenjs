@@ -1,12 +1,13 @@
 // TODO: this should really be in more than one file
 
-describe("shuriken", function() {
-
-	describe("document", function() {
-
-		describe("create", function() {
-
-			it("can make simple, empty elements", function() {
+describe("shuriken", function() 
+{
+	describe("document", function() 
+	{
+		describe("create", function() 
+		{
+			it("can make simple, empty elements", function() 
+			{
 				var div = document.create("<div>");
 				var span = document.create("<span></span>");
 				var a = document.create("<a>");
@@ -15,7 +16,8 @@ describe("shuriken", function() {
 				expect(a).toEqual(jasmine.any(HTMLAnchorElement));
 			});
 
-			it("can make elements with attributes", function() {
+			it("can make elements with attributes", function() 
+			{
 				var div = document.create('<div id="foo">');
 				var span = document.create('<span class="bar"></span>');
 				var a = document.create('<a href="http://example.com/">');
@@ -27,22 +29,26 @@ describe("shuriken", function() {
 				expect(a.href).toEqual("http://example.com/");
 			});
 
-			it("can make elements with inner HTML", function() {
+			it("can make elements with inner HTML", function() 
+			{
 				var div = document.create("<div>Hello world!</div>");
 				expect(div).toEqual(jasmine.any(HTMLDivElement));
 				expect(div.innerHTML).toEqual("Hello world!");
 			});
 
-			it("can make simple text", function() {
+			it("can make simple text", function() 
+			{
 				var html = document.create("foo bar");
 				expect(html).toEqual(jasmine.any(Text));
 			});
 
 		});
 
-        describe("id", function() {
+        describe("id", function() 
+        {
 
-            it("can select div via id", function() {
+            it("can select div via id", function() 
+            {
                 var div  = document.create("<div>");
                 div.attr('id', 'selectViaID');
                 div.appendTo(document.body);
@@ -51,28 +57,26 @@ describe("shuriken", function() {
                 
                 expect(findDiv).toEqual(jasmine.any(HTMLDivElement));
                 expect(findDiv.attr('id')).toEqual('selectViaID');
-
-
             });
-
-
         });
-
-
 	});
 	
-    describe("node", function() {
+    describe("node", function()
+    {
 
-        describe("text", function() {
+        describe("text", function()
+        {
 
-            it("can set text to an element", function() {
+            it("can set text to an element", function() 
+            {
                 var div = document.createElement("div");
                 div.text('example text')
                 expect(div.textContent).toEqual('example text');
 
             });
 
-            it("can read text and ignore html tags", function() {
+            it("can read text and ignore html tags", function() 
+            {
                 var div = document.createElement("div");
                 div.html('example <strong>text</strong>');
                 var output = div.text();
@@ -80,7 +84,8 @@ describe("shuriken", function() {
 
             });
             
-            it("can clear the text from an element", function() {
+            it("can clear the text from an element", function() 
+            {
                 var div = document.createElement("div");
                 div.textContent = 'hello world';
                 div.text('');
@@ -88,45 +93,50 @@ describe("shuriken", function() {
 
             });
 
-            it("can read the text from an element", function() {
+            it("can read the text from an element", function() 
+            {
                 var div = document.createElement("div");
                 div.textContent = 'hello world';
                 var text = div.text();
                 expect(text).toEqual('hello world');
 
-            });
-              
+            }); 
         });
 
-        describe("html", function() {
+        describe("html", function() 
+        {
 
-            it("can set html to an element", function() {
+            it("can set html to an element", function() 
+            {
                 var div = document.createElement("div");
                 div.html('<strong>test</strong>')
                 expect(div.innerHTML).toEqual('<strong>test</strong>');
 
             });
 
-            it("can clear the text from an element", function() {
+            it("can clear the text from an element", function() 
+            {
                 var div = document.createElement("div");
                 div.innerHTML = '<strong>hello world</strong>';
                 div.html('');
                 expect(div.innerHTML).toEqual('');
 
             });
-
         });
 
-        describe("addClass", function() {
+        describe("addClass", function() 
+        {
 
-            it("can add a class to a DIV", function() {
+            it("can add a class to a DIV", function() 
+            {
                 var div = document.createElement("div");
                 div.addClass('test');
                 expect(div.className).toEqual('test');
 
             });
             
-            it("can add multiple classes to a DIV with a class", function() {
+            it("can add multiple classes to a DIV with a class", function() 
+            {
                 var div = document.createElement("div");
                 div.className = 'one second';
                 div.addClass('third fourth fifth');
@@ -137,17 +147,19 @@ describe("shuriken", function() {
                 expect(div.className).toContain("fifth"); 
             });
 
-            it("can add an empty classname to a DIV an expecting an error", function() {
+            it("can add an empty classname to a DIV an expecting an error", function() 
+            {
                 var div = document.createElement("div");
                 div.className = 'one second';
                 expect(function(){div.addClass('');}).toThrow();
             });
-            
         });
         
-        describe("removeClass", function() {
+        describe("removeClass", function() 
+        {
 
-            it("can remove one class from a DIV", function() {
+            it("can remove one class from a DIV", function() 
+            {
                 var div = document.createElement("div");
                 div.className = 'i have many classes';
                 div.removeClass('many');
@@ -155,7 +167,8 @@ describe("shuriken", function() {
 
             });
 
-            it("can remove multiple classes from a DIV", function() {
+            it("can remove multiple classes from a DIV", function() 
+            {
                 var div = document.createElement("div");
                 div.className = 'i have many classes';
                 div.removeClass('many i classes');
@@ -164,24 +177,27 @@ describe("shuriken", function() {
             });
         });
         
-        describe("hasClass", function() {
+        describe("hasClass", function() 
+        {
 
-            it("can check an existing class from an element", function() {
+            it("can check an existing class from an element", function()
+            {
                 var div = document.createElement("div");
                 div.className = 'what a wonderful test';
          
                 expect(div.hasClass('wonderful')).toBeTruthy();
-
             });
             
-            it("can check multiple existing classes from an element", function() {
+            it("can check multiple existing classes from an element", function()
+            {
                 var div = document.createElement("div");
                 div.className = 'what a wonderful test';
          
                 expect(div.hasClass('wonderful a')).toBeTruthy();
 
             });
-            it("can check if one class not existing in the classes of an element", function() {
+            it("can check if one class not existing in the classes of an element", function()
+            {
                 var div = document.createElement("div");
                 div.className = 'what a wonderful test';
          
@@ -189,21 +205,21 @@ describe("shuriken", function() {
 
             });
             
-            it("can check if one class of multiple classes is not in the classList of a DIV", function() {
+            it("can check if one class of multiple classes is not in the classList of a DIV", function()
+            {
                 var div = document.createElement("div");
                 div.className = 'what a wonderful test';
          
                 expect(div.hasClass('wonderful wrong')).toBeFalsy();
 
             });
-            
         });
-        
 
+        describe("on", function()
+        {
 
-        describe("on", function() {
-
-            it("can bind events to Nodes", function() {
+            it("can bind events to Nodes", function()
+            {
                 var div       = document.createElement("div");
                 var result    = "";
                 var docResult = "";
@@ -224,15 +240,17 @@ describe("shuriken", function() {
                 expect(result).toEqual('success');
                 expect(docResult).toEqual('document');
             });
-              
         });
 
-        describe("off", function() {
+        describe("off", function()
+        {
 
-            it("can unbind an event", function() {
+            it("can unbind an event", function()
+            {
                 var result  = false; 
                 
-                var setTrue = function() {
+                var setTrue = function()
+                {
                     result =  true;
                 }
                 
@@ -249,12 +267,13 @@ describe("shuriken", function() {
                 expect(result).toBeFalsy();
   
             });
-              
         });
    
-        describe("hasAttr", function() {
+        describe("hasAttr", function()
+        {
 
-            it("can check attributes", function() {
+            it("can check attributes", function()
+            {
                 var div  = document.createElement("div");
                 div.attr('title', '');
                 
@@ -262,13 +281,14 @@ describe("shuriken", function() {
                 expect(div.hasAttr('title')).toBeTruthy();
                 expect(div.hasAttr('notgiven')).toBeFalsy();
   
-            });
-              
+            });  
         });
 
-        describe("attr", function() {
-
-            it("can set and read an attribute", function() {
+        describe("attr", function() 
+        {
+            
+            it("can set and read an attribute", function() 
+            {
                 var div  = document.createElement("div");
                 div.attr('title', 'check me');
                 var given = div.attr('title');
@@ -278,7 +298,8 @@ describe("shuriken", function() {
             });
 
 
-            it("can set and read multiple attributes", function() {
+            it("can set and read multiple attributes", function() 
+            {
                 var div  = document.createElement("div");
                 div.attr({
                     'title': 'test',
@@ -286,13 +307,76 @@ describe("shuriken", function() {
                     'class'  : 'blue'
                 });
 
-                
                 expect(div.attr('title'))    .toEqual('test');
                 expect(div.attr('data-test')).toEqual('jasmine');
                 expect(div.attr('class'))    .toEqual('blue');
-            });
-               
+            }); 
         });
+        
+        describe("hasData", function() 
+        {
+
+            it("can check data attributes", function() 
+            {
+                var div  = document.createElement("div");
+                div.attr('data-title', '');
+                div.attr('data-test', 'simple');
+                
+                expect(div.hasData('test')) .toBeTruthy();
+                expect(div.hasData('title')).toBeTruthy();
+                expect(div.hasData('not'))  .toBeFalsy();
+                
+            }); 
+        });
+
+        describe("removeData", function() 
+        {
+
+            it("can remove data attributes", function() 
+            {
+                var div  = document.createElement("div");
+                div.attr('data-title', '');
+                div.attr('data-test', 'simple');
+                
+                div.removeData('title');
+                div.removeData('test');
+                
+                
+                expect(div.hasData('test')) .toBeFalsy();
+                expect(div.hasData('title')).toBeFalsy();
+                expect(div.hasData('not'))  .toBeFalsy();
+                
+            });
+        });
+
+        describe("data", function() 
+        {
+            it("can add and read data attributes", function() 
+            {
+                var div  = document.createElement("div");
+                div.data('title', 'this is my title');
+                div.data('test', 'simple test');
+                
+   
+                expect(div.data('title')).toEqual('this is my title');
+                expect(div.data('test')).toEqual('simple test');
+            });
+
+            it("can set and read multiple data attributes", function() 
+            {
+                var div  = document.createElement("div");
+                div.data({
+                    'title' : 'test',
+                    'test'  : 'jasmine',
+                    'color' : 'blue'
+                });
+
+                expect(div.data('title'))    .toEqual('test');
+                expect(div.data('test'))     .toEqual('jasmine');
+                expect(div.data('color'))    .toEqual('blue');
+            });
+        });
+        
         
     });
 });
