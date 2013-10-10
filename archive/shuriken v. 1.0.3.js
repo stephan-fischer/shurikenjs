@@ -6,7 +6,7 @@
  * MIT License - You are free to use this commercial projects as long as the copyright header is left intact.
  * @author        Stephan Fischer
  * @copyright     (c) 2012 - 2013 Stephan Fischer (www.shurikenjs.com)
- * @version 1.0.4 - beta
+ * @version 1.0.3
  * http://shurikenjs.com/license
  */
 
@@ -392,29 +392,7 @@ Document.prototype.create = function(html)
 Document.prototype.id = function(name)
 {
     return document.getElementById(name);
-};
-
-Document.prototype.get = function(uri, callback) 
-{
-    var xhr = new XMLHttpRequest();
-    xhr.open('GET', uri,     true);
-    xhr.on('load', callback);
-    xhr.send();
-};
-
-Document.prototype.post = function(uri, data, callback)
-{
-    var xhr = new XMLHttpRequest();
-    xhr.open('POST', uri,     true);
-    xhr.on('load', callback);
-    var fData = new FormData();
-    
-    for (var name in data) {
-        fData.append(name, data[name]);  
-    } 
-
-    xhr.send(fData);
-};
+}; 
 
 Function.prototype.chain = function() 
 {
